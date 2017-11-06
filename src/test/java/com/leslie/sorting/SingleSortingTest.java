@@ -8,7 +8,7 @@ import org.junit.Test;
 
 public class SingleSortingTest {
 
-	int[] nums = {2, 4, 5, -1, 0};
+	int[] nums = {2, 4, 5, -1, 0, 0, -10, 12, 11, 2, 5, 9, -1989, 10374};
 	
 	
 	@Before
