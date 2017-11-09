@@ -31,8 +31,8 @@ public class SingleSortingTest {
 		System.out.println("Unsorted: " + Arrays.toString(numsCopy));
 		
 		//When
-		QuickSort qs = new QuickSort();		
-		numsCopy = qs.quickSort(numsCopy);
+		HeapSort algo = new HeapSort();		
+		numsCopy = algo.heapSort(numsCopy);
 		System.out.println("Sorted: " + Arrays.toString(numsCopy));
 
 		//Then

@@ -23,4 +23,18 @@ public class SortingTest {
 	}
 
 	
+	/*===========================
+	 * Quick Sort
+	 * ==========================
+	 */
+
+	@Test
+	public void heapSortTest(){
+		
+		HeapSort hs = new HeapSort();
+
+		TestUtils.assertArrayEquals(hs.heapSort(TestUtils.getUnsorted()));
+
+	}
+	
 }
