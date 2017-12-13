@@ -1,6 +1,10 @@
 package com.leslie;
 
+import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 /**
  * Hello world!
@@ -12,24 +16,39 @@ public class App {
 	public static void main(String[] args) {
 		
 		
-		//System.out.println("Hello World!");
-		int[] nums = {1, 2, 3};
+		List<List<Integer>> list = new ArrayList<>();
+		Set<Set<Integer>> set = new HashSet<>();
 		
-		testInt(nums);
+		Set<Integer> list1 = new HashSet<>();
+		list1.add(1);
+		list1.add(2);
+		if(set.add(list1)){
+			list.add(new ArrayList<>(list1));
+		}
 		
-		System.out.println(Arrays.toString(nums));
+		Set<Integer> list2 = new HashSet<>();
+		list2.add(2);
+		list2.add(1);
+		if(set.add(list2)){
+			list.add(new ArrayList<>(list2));
+		}
 		
-	}
+		System.out.println(set);
+		System.out.println(list);
 	
-	
-	static void testInt(int[] nums){
+		
 
-		int[] nums2 = nums;
-		nums2[0] = 0;
 		
-		System.out.println(Arrays.toString(nums));
-		System.out.println(Arrays.toString(nums2));
 		
+		/*
+		Set<Set<Integer>> set = new HashSet<>();
+		List<List<Integer>> list = new ArrayList<>();
+		set.
+		list.addAll(new ArrayList<>(set.));
+		*/
 	}
+	
+	
+	
 
 }
