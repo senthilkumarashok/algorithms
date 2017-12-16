@@ -2,8 +2,42 @@ package com.leslie.misc;
 
 public class Djikstra {
 	
+	/*
 	
 	
+	deepti.guthal [9:56 AM] 
+{{0,2,1,6,0,0},
+                               {2,0,3,0,0,0},
+                               {1,3,0,0,2,4},
+                               {6,0,0,0,5,0},
+                               {0,0,2,5,0,1},
+                               {0,0,4,0,1,0}}
+
+
+[9:57] 
+above on is mine
+
+
+[9:57] 
+{{0, 4, 0, 0, 0, 0, 0, 8, 0},
+                                {4, 0, 8, 0, 0, 0, 0, 11, 0},
+                                {0, 8, 0, 7, 0, 4, 0, 0, 2},
+                                {0, 0, 7, 0, 9, 14, 0, 0, 0},
+                                {0, 0, 0, 9, 0, 10, 0, 0, 0},
+                                {0, 0, 4, 14, 10, 0, 2, 0, 0},
+                                {0, 0, 0, 0, 0, 2, 0, 1, 6},
+                                {8, 11, 0, 0, 0, 0, 1, 0, 7},
+                                {0, 0, 2, 0, 0, 0, 6, 7, 0}}
+
+
+[9:57] 
+this was on a website
+
+
+[10:00] 
+http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
+	
+	*/
 	public void run(int[][] input, int source, int dest){
 						
 		//If empty matrix, return
@@ -27,16 +61,12 @@ public class Djikstra {
 		boolean[] visited = new boolean[cols];
 		int[] results = new int[cols];
 		
-		//Create an array holding ascii character values for each column or node, starting with 'a' i.e. 65
-		int[][] colNames = new int[1][cols];
-		int pathNameAscii = 65;
-		for(int i = 0; i < cols; i++){
-			colNames[0][i] = pathNameAscii++;
-		}	
-			
+		//Base ascii character values for each column or node, starting with 'a' i.e. 65
+		int nodeNameAsciiBase = 65;
+
 		//Init sb for path
 		StringBuilder sb = new StringBuilder();
-		sb.append((char)colNames[0][source]);
+		sb.append((char) (nodeNameAsciiBase + source));
 		
 		//Fill results with max value, but set result of source node to 0
 		for(int i = 0; i < cols; i++){
@@ -86,7 +116,7 @@ public class Djikstra {
 			cumMinCost = rowMinCost;
 
 			//Set letter path
-			sb.append(" -> ").append((char)colNames[0][rowMinCostIndex]);
+			sb.append(" -> ").append((char)(nodeNameAsciiBase + rowMinCostIndex));
 			
 			//Exit if destination has been reached
 			if(rowMinCostIndex == dest){
