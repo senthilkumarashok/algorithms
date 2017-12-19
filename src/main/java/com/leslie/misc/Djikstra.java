@@ -17,26 +17,6 @@ public class Djikstra {
 [9:57] 
 above on is mine
 
-
-[9:57] 
-{{0, 4, 0, 0, 0, 0, 0, 8, 0},
-                                {4, 0, 8, 0, 0, 0, 0, 11, 0},
-                                {0, 8, 0, 7, 0, 4, 0, 0, 2},
-                                {0, 0, 7, 0, 9, 14, 0, 0, 0},
-                                {0, 0, 0, 9, 0, 10, 0, 0, 0},
-                                {0, 0, 4, 14, 10, 0, 2, 0, 0},
-                                {0, 0, 0, 0, 0, 2, 0, 1, 6},
-                                {8, 11, 0, 0, 0, 0, 1, 0, 7},
-                                {0, 0, 2, 0, 0, 0, 6, 7, 0}}
-
-
-[9:57] 
-this was on a website
-
-
-[10:00] 
-http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
-	
 	*/
 	public void run(int[][] input, int source, int dest){
 						
@@ -60,17 +40,12 @@ http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-alg
 		
 		boolean[] visited = new boolean[cols];
 		int[] results = new int[cols];
-		
-		//Base ascii character values for each column or node, starting with 'a' i.e. 65
-		int nodeNameAsciiBase = 65;
-
-		//Init sb for path
-		StringBuilder sb = new StringBuilder();
-		sb.append((char) (nodeNameAsciiBase + source));
+		int[] path = new int[cols];
 		
 		//Fill results with max value, but set result of source node to 0
 		for(int i = 0; i < cols; i++){
 			results[i] = Integer.MAX_VALUE;
+			path[i] = -1;
 		}
 		results[source] = 0;
 		
@@ -80,7 +55,7 @@ http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-alg
 		//Visit each cell row-wise
 		int cumMinCost = 0;
 
-		for(int i = 0; i < rows; ){
+		for(int i = source; i < rows; ){
 			
 			int rowMinCost = Integer.MAX_VALUE;
 			int rowMinCostIndex = -1;
@@ -94,7 +69,10 @@ http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-alg
 				int ijCost = input[i][j] == -1 ? Integer.MAX_VALUE : input[i][j] + cumMinCost;
 
 				//Cost in each cell equals minimum between cell cost + cumBaseCost, and cost of cell above
-				results[j] = Math.min(ijCost, results[j]);
+				if(ijCost < results[j]){
+					results[j] = ijCost;
+					path[j] = i;
+				}
 		
 				//Adjust minimum cost & index if necessary
 				if(results[j] < rowMinCost){
@@ -104,20 +82,17 @@ http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-alg
 	
 			}
 			
-			System.out.println(rowMinCost);
+			//System.out.println(rowMinCost);
 			
 			//Exit if couldn't find a min cost index (all nodes have already been visited)
 			if(rowMinCostIndex == -1){
-				sb.append(" -> No further path");
+				//sb.append(" -> No further path");
 				break;
 			}
 			
 			//Add cost to current node to cum min cost
 			cumMinCost = rowMinCost;
 
-			//Set letter path
-			sb.append(" -> ").append((char)(nodeNameAsciiBase + rowMinCostIndex));
-			
 			//Exit if destination has been reached
 			if(rowMinCostIndex == dest){
 				break;
@@ -132,14 +107,126 @@ http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-alg
 		}
 		
 		System.out.println("Minimum Cost: " + cumMinCost);
-		System.out.println("Optimum Path: " + sb.toString());
+		
+		//Print path
+		StringBuilder sb = new StringBuilder();
+		if(path[dest] != -1){//If there is a path
+			
+			sb.append((char)('a' + dest)).append(" >- ");
+			int previous = path[dest];
+			while(previous != source){
+				sb.append((char)('a' + previous)).append(" >- ");
+				previous = path[previous];
+			}
+			
+		}
+		
+		sb.append((char)('a' + source));
+		
+		System.out.println(sb.reverse().toString());
 		
 	}
 	
 	
 	
+	public void run2(int[][] input, int source, int dest){
+		
+		//If empty matrix, return
+		if(input.length < 1) return;
+				
+		//int rows = input.length;
+		int cols = input[0].length;
+		
+		if(source >= cols || dest >= cols){
+			System.err.println("Source & Destination indices should be less the number of column in the input matrix");
+			System.exit(1);
+		}
+		
+		//If source same as destination, return 0
+		if(source == dest){ 
+			System.out.println("Minimum Cost: 0");
+			System.out.println("Optimum Path: Same as initial" );
+			return;
+		}
 	
+		//Initially fill cost matrix will all infinity, except for source index
+		//Initially fill path matrix will -1. Set initial path node to source
+		int[] path = new int[cols];
+		int[] cost = new int[cols];
+		for(int i = 0; i < cols; i++){
+			cost[i] = Integer.MAX_VALUE;
+			path[i] = -1;
+		}
+		cost[source] = 0;
+		path[0] = source;
+		
+		//Create visited matrix
+		boolean[] visited = new boolean[cols];
+		
+		//Calculate minimum cost starting at source
+		int minCost = 0;
+		int currentNode = source;
+
+		while(currentNode != dest){
+			
+			int nextNode = -1;
+			int nodeMinCost = Integer.MAX_VALUE;
+			
+			for(int i = 0; i < cols; i++){
+				
+				if(i == currentNode || visited[i]) continue;//Only consider non-visited nodes
+				
+				//-1 in input matrix indicates no path
+				int nodeCost = input[currentNode][i] == -1 ? Integer.MAX_VALUE : input[currentNode][i] + minCost;
 	
+				if(nodeCost < cost[i]){
+					cost[i] = nodeCost;
+					path[i] = currentNode;
+				}
+				//cost[i] = Math.min(cost[i], nodeCost);
+				
+				if(nodeCost < nodeMinCost){
+					nodeMinCost = nodeCost;
+					nextNode = i;
+				}
+
+			}
+			
+			//Set current node to visited
+			visited[currentNode] = true;
+			
+			//NextNode wasn't updated, So no further path
+			if(nextNode == -1){
+				break; 
+			}
+			
+			minCost = nodeMinCost;
+			currentNode = nextNode;
+		
+		}
+		
+		//Print min cost
+		System.out.println("Min cost is: " + minCost);
+		
+		//Print path
+		StringBuilder sb = new StringBuilder();
+		if(path[dest] != -1){//If there is a path
+			
+			sb.append((char)('a' + dest)).append(" >- ");
+			int previous = path[dest];
+			while(previous != source){
+				sb.append((char)('a' + previous)).append(" >- ");
+				previous = path[previous];
+			}
+			
+		}
+		
+		sb.append((char)('a' + source));
+		
+		System.out.println(sb.reverse().toString());
+	
+		
+	}
 	
 
 }

@@ -13,7 +13,7 @@ public class MiscMain {
 	public static void runDjikstra(){
 		
 		
-		int[][] input = 
+		int[][] inputLeslie = 
 			{
 					{ 0,   1,  -1,  -1,  8},
 					{-1,   0,   2,  -1,  -1},
@@ -23,8 +23,53 @@ public class MiscMain {
 			};
 		
 		Djikstra dj = new Djikstra();
-		dj.run(input, 0, 3);
 		
+		//System.out.println("=== Input Leslie === ");
+		//System.out.println("Expected Min Cost: 10. Path: a -> b -> c -> e -> d");
+		//dj.run2(inputLeslie, 0, 3);
+		
+		int[][] inputDeepGeek = 
+			{
+				  //    { 0,   1,   2,   3,   4,    5,    6,   7,    8},
+				  /*0*/	{ 0,   4,  -1,  -1,  -1,   -1,   -1,    8,   -1},
+				  /*1*/ { 4,   0,   8,  -1,  -1,   -1,   -1,   11,   -1},
+				  /*2*/ {-1,   8,   0,   7,  -1,    4,   -1,   -1,    2},
+				  /*3*/ {-1,  -1,   7,   0,   9,   14,   -1,   -1,   -1},
+				  /*4*/ {-1,  -1,  -1,   9,   0,   10,   -1,   -1,   -1},
+				  /*5*/ {-1,  -1,   4,  14,  10,    0,    2,   -1,   -1},
+				  /*6*/ {-1,  -1,  -1,   -1,  -1,   2,    0,    1,    6},
+				  /*7*/ { 8,  11,  -1,   -1,  -1,   -1,   1,    0,    7},
+				  /*8*/ {-1,  -1,   2,   -1,  -1,   -1,   6,    7,    0}
+			};
+		//http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
+		//System.out.println("=== Input Deep Geeks === ");
+		//dj.run(inputDeepGeek, 0, 6);
+		/*
+		
+		Vertex   Distance from Source
+			0                0
+			1                4
+			2                12
+			3                19
+			4                21
+			5                11
+			6                9
+			7                8
+			8                14
+		
+		*/
+		
+		
+		int[][] inputDeep = 
+			{
+					{ 0,   2,  1,  6,  -1,   -1},
+					{ -1,   0,  3,  -1,  -1,   -1},
+					{ -1,   -1,  0,  -1,  2,   4},
+					{ -1,   -1,  -1,  0,  5,   -1},
+					{ -1,   -1,  -1,  -1,  0,   1},
+					{ -1,   -1,  -1,  -1,  -1,   0}
+			};
+		dj.run(inputDeep, 0, 5);
 		
 	}
 
