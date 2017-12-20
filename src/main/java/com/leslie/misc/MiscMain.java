@@ -43,7 +43,7 @@ public class MiscMain {
 			};
 		//http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
 		//System.out.println("=== Input Deep Geeks === ");
-		//dj.run(inputDeepGeek, 0, 6);
+		dj.run(inputDeepGeek, 6, 5);
 		/*
 		
 		Vertex   Distance from Source
@@ -69,7 +69,7 @@ public class MiscMain {
 					{ -1,   -1,  -1,  -1,  0,   1},
 					{ -1,   -1,  -1,  -1,  -1,   0}
 			};
-		dj.run(inputDeep, 0, 5);
+		//dj.run2(inputDeep, 0, 5);
 		
 	}
 

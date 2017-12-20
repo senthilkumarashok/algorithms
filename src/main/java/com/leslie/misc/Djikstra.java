@@ -20,23 +20,10 @@ above on is mine
 	*/
 	public void run(int[][] input, int source, int dest){
 						
-		//If empty matrix, return
-		if(input.length < 1) return;
-				
+		if(!validate(input, source, dest)) return;
+		
 		int rows = input.length;
 		int cols = input[0].length;
-		
-		if(source >= cols || dest >= cols){
-			System.err.println("Source & Destination indices should be less the number of column in the input matrix");
-			System.exit(1);
-		}
-		
-		//If source same as direction, return 0
-		if(source == dest){ 
-			System.out.println("Minimum Cost: 0");
-			System.out.println("Optimum Path: Same as initial" );
-			return;
-		}
 		
 		boolean[] visited = new boolean[cols];
 		int[] results = new int[cols];
@@ -109,21 +96,7 @@ above on is mine
 		System.out.println("Minimum Cost: " + cumMinCost);
 		
 		//Print path
-		StringBuilder sb = new StringBuilder();
-		if(path[dest] != -1){//If there is a path
-			
-			sb.append((char)('a' + dest)).append(" >- ");
-			int previous = path[dest];
-			while(previous != source){
-				sb.append((char)('a' + previous)).append(" >- ");
-				previous = path[previous];
-			}
-			
-		}
-		
-		sb.append((char)('a' + source));
-		
-		System.out.println(sb.reverse().toString());
+		printPath(path, source, dest);
 		
 	}
 	
@@ -131,24 +104,11 @@ above on is mine
 	
 	public void run2(int[][] input, int source, int dest){
 		
-		//If empty matrix, return
-		if(input.length < 1) return;
-				
+		if(!validate(input, source, dest)) return;
+	
 		//int rows = input.length;
 		int cols = input[0].length;
-		
-		if(source >= cols || dest >= cols){
-			System.err.println("Source & Destination indices should be less the number of column in the input matrix");
-			System.exit(1);
-		}
-		
-		//If source same as destination, return 0
-		if(source == dest){ 
-			System.out.println("Minimum Cost: 0");
-			System.out.println("Optimum Path: Same as initial" );
-			return;
-		}
-	
+				
 		//Initially fill cost matrix will all infinity, except for source index
 		//Initially fill path matrix will -1. Set initial path node to source
 		int[] path = new int[cols];
@@ -183,9 +143,8 @@ above on is mine
 					cost[i] = nodeCost;
 					path[i] = currentNode;
 				}
-				//cost[i] = Math.min(cost[i], nodeCost);
-				
-				if(nodeCost < nodeMinCost){
+
+				if(cost[i] < nodeMinCost){
 					nodeMinCost = nodeCost;
 					nextNode = i;
 				}
@@ -209,6 +168,39 @@ above on is mine
 		System.out.println("Min cost is: " + minCost);
 		
 		//Print path
+		printPath(path, source, dest);
+	
+		
+	}
+	
+	
+	private boolean validate(int[][] input, int source, int dest){
+		
+		//If empty matrix, return
+		if(input.length < 1) return false;
+				
+		//int rows = input.length;
+		int cols = input[0].length;
+		
+		if(source >= cols || dest >= cols){
+			System.err.println("Source & Destination indices should be less the number of column in the input matrix");
+			System.exit(1);
+		}
+		
+		//If source same as destination, return 0
+		if(source == dest){ 
+			System.out.println("Minimum Cost: 0");
+			System.out.println("Optimum Path: " + ((char)('a' + dest)) );
+			return false;
+		}
+		
+		return true;
+		
+	}
+	
+	
+	private void printPath(int[] path, int source, int dest){
+		
 		StringBuilder sb = new StringBuilder();
 		if(path[dest] != -1){//If there is a path
 			
@@ -224,7 +216,6 @@ above on is mine
 		sb.append((char)('a' + source));
 		
 		System.out.println(sb.reverse().toString());
-	
 		
 	}
 	
