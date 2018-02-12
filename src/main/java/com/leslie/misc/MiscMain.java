@@ -1,14 +1,22 @@
 package com.leslie.misc;
 
+import java.util.Arrays;
+
 public class MiscMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		runDjikstra();
+		//runDjikstra();
+		int[] nums = {3, 4, 1, 2};
+		doSome(nums);
+		System.out.println(Arrays.toString(nums));
 		
 	}
 	
-	
+	public static void doSome(int[] nums)
+	{
+		nums[0] = 5;
+	}
 	
 	public static void runDjikstra(){
 		

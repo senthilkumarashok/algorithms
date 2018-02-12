@@ -16,23 +16,18 @@ public class QuickSort {
 	 * Public Methods 
 	 */
 	
-	public int[] quickSort(int[] nums){
-		
-		quickSort(nums, 0, nums.length - 1);
-		
-		return nums;
-		
-	}
-	
-	
-	
+	/*
+	  ==================================
+	  		Multiple arrays
+	  ==================================
+	 */
 	public List<int[]> quickSort(List<int[]> numsList){
 		
 		List<int[]> sortedList = new ArrayList<>();
 	
 		for(int[] nums : numsList){
 			
-			quickSort(nums, 0, nums.length - 1);
+			quickSort2(nums, 0, nums.length - 1);
 			sortedList.add(nums);
 			
 		}
@@ -40,6 +35,72 @@ public class QuickSort {
 		return sortedList;
 	}
 	
+	
+	/*
+	  ==================================
+	  		REWRITE
+	  ==================================
+	 */
+	public int[] quickSort2(int[] nums){
+		
+		quickSort2(nums, 0, nums.length - 1);
+
+		return nums;		
+		
+	}
+	
+	
+	private void quickSort2(int[] nums, int start, int end){
+		
+		//If 1- elements, return
+		if(end - start < 1) return;
+		
+		int pivot = end;
+		int left = start;
+		int right = end - 1;
+		
+		while( left < right ){
+			
+			//Do <= to ensure pivot will end up in its right place. Even if duplicates,
+			//Algo is in place and order should be maintained
+			while(left < right && nums[left] <= nums[pivot]) left++;
+			
+			while(left < right && nums[right] > nums[pivot]) right--;
+			
+			if(left < right){
+				Utilities.swap(nums, left, right);
+			}
+				
+		}
+		
+		if(nums[left] > nums[pivot]){
+			Utilities.swap(nums, left, pivot);
+			pivot = left;
+		}
+		
+		quickSort2(nums, start, pivot - 1);
+		quickSort2(nums, pivot + 1, end);
+		
+	}
+	
+	
+	
+	
+	
+	
+	/*
+	  ==================================
+	  		ORIGINAL
+	  ==================================
+	 */
+	
+	public int[] quickSort(int[] nums){
+		
+		quickSort(nums, 0, nums.length - 1);
+		
+		return nums;
+		
+	}
 
 	/*
 	 * 0  1  2
@@ -59,7 +120,7 @@ public class QuickSort {
 	 * 
 	 * low = 2, high = 4
 	 */
-	static void quickSort(int[] nums, int start, int end){
+	private void quickSort(int[] nums, int start, int end){
 		
 		if(end - start + 1 <= 1) return;
 		
