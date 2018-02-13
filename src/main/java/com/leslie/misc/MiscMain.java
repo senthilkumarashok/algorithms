@@ -1,13 +1,29 @@
 package com.leslie.misc;
 
+import java.util.Arrays;
+import java.util.List;
+
 public class MiscMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		runDjikstra();
+		//runDjikstra();
+		runRedAndBlueTapeFB();
 		
 	}
 	
+	
+	public static void runRedAndBlueTapeFB(){
+		
+		RedBlueTapeFB rb = new RedBlueTapeFB();
+		
+		int[] red = {4,6};
+		int[][] arr = { {4,5} };
+		List<int[]> blueList = Arrays.asList(arr);
+		
+		System.out.println(rb.isRedVisible(red, blueList));
+		
+	}
 	
 	
 	public static void runDjikstra(){
@@ -43,7 +59,7 @@ public class MiscMain {
 			};
 		//http://www.geeksforgeeks.org/greedy-algorithms-set-6-dijkstras-shortest-path-algorithm/
 		//System.out.println("=== Input Deep Geeks === ");
-		dj.run(inputDeepGeek, 6, 5);
+		//dj.run(inputDeepGeek, 6, 5);
 		/*
 		
 		Vertex   Distance from Source
@@ -69,7 +85,16 @@ public class MiscMain {
 					{ -1,   -1,  -1,  -1,  0,   1},
 					{ -1,   -1,  -1,  -1,  -1,   0}
 			};
-		//dj.run2(inputDeep, 0, 5);
+		
+		int[][] inputDeep2 = 
+			   {{0,2,1,6,-1,-1},
+                {2,0,3,-1,-1,-1},
+                {1,3,0,-1,2,4},
+                {6,-1,-1,0,5,-1},
+                {-1,-1,2,5,0,1},
+                {-1,-1,4,-1,1,0}};
+		
+		dj.run2(inputDeep, 0, 5);
 		
 	}
 
