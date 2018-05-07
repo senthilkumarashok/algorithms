@@ -8,11 +8,11 @@ public class MiscMain {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//runDjikstra();
-		runRedAndBlueTapeFB();
+		//runRedAndBlueTapeFB();
 		
 	}
 	
-	
+	/*
 	public static void runRedAndBlueTapeFB(){
 		
 		RedBlueTapeFB rb = new RedBlueTapeFB();
@@ -24,7 +24,7 @@ public class MiscMain {
 		System.out.println(rb.isRedVisible(red, blueList));
 		
 	}
-	
+	*/
 	
 	public static void runDjikstra(){
 		
