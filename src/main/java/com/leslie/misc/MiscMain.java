@@ -29,6 +29,7 @@ public class MiscMain {
 	public static void runDjikstra(){
 		
 		
+		
 		int[][] inputLeslie = 
 			{
 					{ 0,   1,  -1,  -1,  8},
@@ -98,4 +99,10 @@ public class MiscMain {
 		
 	}
 
+	@Override
+	public String toString() {
+		return "MiscMain []";
+	}
+
+	
 }
