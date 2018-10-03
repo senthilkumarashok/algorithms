@@ -6,8 +6,8 @@
 
 * Cummulative sum technique
 sum[i] will be the sum of num[0] to num[i], So the sum of array range num[i] to num[j] is always like sum[j]-sum[i-1]
- * Subarray problems
- * Range addition
+  * Subarray problems
+  * Range addition
 
 
 ## Trees
