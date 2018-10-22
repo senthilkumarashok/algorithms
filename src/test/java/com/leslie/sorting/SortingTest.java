@@ -24,7 +24,7 @@ public class SortingTest {
 
 	
 	/*===========================
-	 * Quick Sort
+	 * Heap Sort
 	 * ==========================
 	 */
 
@@ -34,6 +34,20 @@ public class SortingTest {
 		HeapSort hs = new HeapSort();
 
 		TestUtils.assertArrayEquals(hs.heapSort(TestUtils.getUnsorted()));
+
+	}
+	
+	/*===========================
+	 * Merge Sort
+	 * ==========================
+	 */
+
+	@Test
+	public void mergeSortTest(){
+		
+		MergeSort algo = new MergeSort();
+
+		TestUtils.assertArrayEquals(algo.doSort(TestUtils.getUnsorted()));
 
 	}
 	
