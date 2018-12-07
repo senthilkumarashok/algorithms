@@ -4,7 +4,7 @@
 
 - [Strings](#Strings)
 	- [Knuth-Morris-Pratt](#Knuth-Morris-Pratt)
-	   - [What's the Partial Match Table (PMT)](#What-%2C-s-the-Partial-Match-Table%2e%28-PMT%29)
+	   - [What's the Partial Match Table (PMT)?](#What-%27-s-the-Partial-Match-Table%2e%28-PMT-%29%3F)
 	   - [Brainstorming the String Pattern Search problem](#Brainstorming-the-String-Pattern-Search-problem)
        - [Resources](#Resources)
 
