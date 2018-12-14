@@ -39,3 +39,4 @@ Using the longest such suffix/prefix will clearly yield to most efficient result
 - https://www.nayuki.io/page/knuth-morris-pratt-string-matching
 - http://jakeboxer.com/blog/2009/12/13/the-knuth-morris-pratt-algorithm-in-my-own-words/
 - https://tekmarathon.com/2013/05/14/algorithm-to-find-substring-in-a-string-kmp-algorithm/
+- [The longest prefix suffix array in kmp algorithm](https://www.youtube.com/watch?v=tWDUjkMv6Lc&feature=youtu.be)

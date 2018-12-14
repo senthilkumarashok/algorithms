@@ -1,14 +1,14 @@
 package com.leslie.misc;
 
-import java.util.Arrays;
-import java.util.List;
-
 public class MiscMain {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		//runDjikstra();
 		//runRedAndBlueTapeFB();
+		
+		KMP kmp = new KMP();
+		kmp.doKMP("", "aaabaaaaab");
 		
 	}
 	
@@ -18,7 +18,7 @@ public class MiscMain {
 		RedBlueTapeFB rb = new RedBlueTapeFB();
 		
 		int[] red = {4,6};
-		int[][] arr = { {4,5} };
+		int[][] arr = { e{4,5} };
 		List<int[]> blueList = Arrays.asList(arr);
 		
 		System.out.println(rb.isRedVisible(red, blueList));
