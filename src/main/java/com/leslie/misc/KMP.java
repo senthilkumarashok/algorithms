@@ -9,11 +9,50 @@ public class KMP {
 	 * PUBLIC Methods
 	 */
 	
-	public void doKMP(String text, String pattern){
+	public int doKMP(String text, String pattern){
 		
-		System.out.println(Arrays.toString(computePartialMatchTable(pattern)));
-		System.out.println(Arrays.toString(computePartialMatchTable2(pattern)));
-
+		System.out.println("Text: " + text + ", Pattern: " + pattern);
+		
+		if(text == null  || 
+				pattern == null || 
+				pattern.length() > text.length() ||
+				pattern.length() == 0 ||
+				text.length() == 0) return 0;
+		
+		int[] table = computePartialMatchTableImproved(pattern);
+		
+		System.out.println("Partial Match Table: " + Arrays.toString(table));
+		
+		int t = 0, p = 0;
+		int count = 0;
+		
+		while(t < text.length()){
+			
+			if(text.charAt(t) == pattern.charAt(p)){
+				
+				p++;
+				t++;
+				
+				if(p == pattern.length() - 1){
+					count++;
+					p = table[p - 1];
+				}
+				
+			}
+			else if (p > 0){
+				p = table[p - 1];
+			}
+			else{
+				t++;
+			}
+	
+			
+		}
+		
+		System.out.println("Count: " + count);
+		
+		return count;
+		
 	}
 	
 	
@@ -60,7 +99,7 @@ public class KMP {
 	 * @param pattern
 	 * @return
 	 */
-	private int[] computePartialMatchTable2(String pattern){
+	private int[] computePartialMatchTableImproved(String pattern){
 		
 		int length = pattern.length();
 		

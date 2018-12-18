@@ -8,7 +8,7 @@ public class MiscMain {
 		//runRedAndBlueTapeFB();
 		
 		KMP kmp = new KMP();
-		kmp.doKMP("", "aaabaaaaab");
+		kmp.doKMP("dpainfaininindf", "");
 		
 	}
 	
