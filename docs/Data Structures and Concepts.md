@@ -21,7 +21,12 @@
   * sub-tree
   * Root of a tree
   * siblings
+
+### Types
   
+  * Binary Tree 
+  * Binary Search Tree
+
 
 
 
